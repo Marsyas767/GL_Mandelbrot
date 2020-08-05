@@ -17,7 +17,7 @@ double yPos = 0.0f;
 double zoom = 1.0f;
 float camSpeed = 0.05f;
 
-int rRes = 128; //how much resolution the red set has
+int rRes = 128; //Initial red resolution
 
 const char* vertSrc = R""(
     #version 410 core
@@ -127,7 +127,7 @@ int main(){
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
-
+    
     GLuint xPosLoc = glGetUniformLocation(shaderProgram, "xPos");
     GLuint yPosLoc = glGetUniformLocation(shaderProgram, "yPos");
     GLuint zoomLoc = glGetUniformLocation(shaderProgram, "zoom");
@@ -148,10 +148,11 @@ int main(){
 
         glfwSwapBuffers(gWindow);
         glfwPollEvents();
-        camSpeed = 0.01/(zoom);
+        camSpeed = 0.01/(zoom); //make sure that the camera movement changes with zoom
         if(glfwGetKey(gWindow, GLFW_KEY_ESCAPE)){
-            glfwSetWindowShouldClose(gWindow, GLFW_TRUE);
+            glfwSetWindowShouldClose(gWindow, GLFW_TRUE); //close window
         }
+        //movement
         if(glfwGetKey(gWindow, GLFW_KEY_W)){
             yPos += camSpeed;
         }
@@ -164,12 +165,14 @@ int main(){
         if(glfwGetKey(gWindow, GLFW_KEY_D)){
             xPos += camSpeed;
         }
+        //zoom
         if(glfwGetKey(gWindow, GLFW_KEY_Z)){
             zoom *= 1.1f;
         }
         if(glfwGetKey(gWindow, GLFW_KEY_X)){
             zoom /= 1.1f;
         }
+        //resolution
         if(glfwGetKey(gWindow, GLFW_KEY_UP)){
             rRes += 1;
             std::cout<<"Iterations: "<<rRes<<std::endl;
