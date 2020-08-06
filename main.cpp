@@ -168,9 +168,11 @@ int main(){
         //zoom
         if(glfwGetKey(gWindow, GLFW_KEY_Z)){
             zoom *= 1.1f;
+            std::cout<<"Zoom: "<<zoom<<std::endl;
         }
         if(glfwGetKey(gWindow, GLFW_KEY_X)){
             zoom /= 1.1f;
+            std::cout<<"Zoom: "<<zoom<<std::endl;
         }
         //resolution
         if(glfwGetKey(gWindow, GLFW_KEY_UP)){
