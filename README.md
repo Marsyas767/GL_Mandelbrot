@@ -3,7 +3,6 @@ Simple Mandelbrot set implementation in OpenGL and C++
 # Requirements
 - GLFW
 - gl3w
-- Computer
 # Controls
 WASD to move  
 Z to zoom in  
